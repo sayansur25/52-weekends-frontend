@@ -1,0 +1,251 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Corporate Color Palette A */
+:root {
+  --navy: #010079;         /* Primary */
+  --teal: #069494;         /* Secondary */
+  --gold: #D5AD36;         /* Accent */
+  --bg: #FFFFFF;           /* Background */
+  --surface: #D5E7EA;      /* Soft surface */
+  --text: #142126;         /* Deep text */
+  --text-light: #5A6B74;   /* Light text */
+  --border: #E0E6E8;       /* Border color */
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 2px 8px rgba(6, 148, 148, 0.15); }
+  50% { box-shadow: 0 8px 24px rgba(6, 148, 148, 0.25); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(6, 148, 148, 0.03) 2px, rgba(6, 148, 148, 0.03) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(6, 148, 148, 0.03) 2px, rgba(6, 148, 148, 0.03) 4px);
+}
+
+/* Hero Section */
+.hero-section {
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Cards */
+.event-card {
+  animation: fadeInUp 0.6s ease-out;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(1, 0, 121, 0.08);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.event-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(6, 148, 148, 0.1), transparent);
+  transition: left 0.6s ease;
+  z-index: 2;
+}
+
+.event-card:hover::before {
+  left: 100%;
+}
+
+.event-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(1, 0, 121, 0.12);
+  border-color: var(--teal);
+}
+
+.event-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.event-card:hover img {
+  transform: scale(1.1);
+}
+
+.feature-card {
+  animation: fadeInUp 0.7s ease-out;
+  background: var(--surface);
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(1, 0, 121, 0.06);
+  transition: all 0.3s ease;
+  padding: 32px 24px;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(6, 148, 148, 0.15);
+}
+
+/* Buttons */
+.cta-button {
+  background: var(--navy);
+  color: var(--bg);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  border-radius: 8px;
+}
+
+.cta-button:hover {
+  background: var(--teal);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(6, 148, 148, 0.2);
+}
+
+.cta-button.gold {
+  background: var(--gold);
+  color: var(--text);
+}
+
+.cta-button.gold:hover {
+  background: #C69B2B;
+}
+
+.cta-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+  background: linear-gradient(135deg, #e8d5c4 0%, #d4af37 100%);
+}
+
+/* Status Badge */
+.status-badge {
+  background: linear-gradient(135deg, #d4af37 0%, #e8d5c4 100%);
+  color: #1a1a2e;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 24px;
+  font-size: 0.75rem;
+  display: inline-block;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Price Tag */
+.price-tag {
+  background: linear-gradient(135deg, #d4af37 0%, #e8d5c4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+/* Headings */
+h1 { color: #ffffff; font-weight: 800; letter-spacing: -0.5px; }
+h2 { color: #ffffff; font-weight: 700; }
+h3 { color: #ffffff; font-weight: 700; }
+
+/* Navigation */
+nav {
+  background: rgba(26, 26, 46, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+nav a {
+  color: #b0b8c1;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  color: #0066ff;
+}
+
+/* Footer */
+footer {
+  background: rgba(15, 20, 25, 0.98);
+  border-top: 1px solid rgba(0, 102, 255, 0.1);
+  color: #b0b8c1;
+}
+
+footer a {
+  color: #b0b8c1;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #0066ff;
+}
+
+/* Text Colors */
+p { color: #b0b8c1; line-height: 1.7; }
+
+.text-hero { font-size: 1.25rem; color: white; font-weight: 500; }
+
+/* Badges */
+.badge-corporate {
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.2) 0%, rgba(0, 212, 255, 0.1) 100%);
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  color: #00d4ff;
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 102, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 102, 255, 0.3);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 102, 255, 0.5);
+}
