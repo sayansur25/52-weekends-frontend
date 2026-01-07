@@ -5,10 +5,21 @@ import { useAuth } from '@/hooks/useAuth';
 import { RoleGuard } from '@/components/RoleGuard';
 import { eventApi } from '@/lib/api';
 
+interface Event {
+  id: number;
+  title: string;
+  description: string;
+  start_date: string;
+  end_date: string;
+  max_attendees: number;
+  cost_per_person: number;
+  status: 'published' | 'draft';
+}
+
 export default function OrganizerDashboard() {
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState('events');
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [showCreateEvent, setShowCreateEvent] = useState(false);
 
@@ -229,7 +240,7 @@ export default function OrganizerDashboard() {
 
                   {events.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {events.map((event: any) => (
+                      {events.map((event) => (
                         <div
                           key={event.id}
                           className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all p-6 border-l-4"

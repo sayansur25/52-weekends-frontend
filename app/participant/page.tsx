@@ -29,8 +29,8 @@ export default function ParticipantDashboard() {
   };
 
   // Separate upcoming and attended events
-  const upcomingEvents = allEvents.filter(e => e.status === 'published');
-  const attendedEvents = allEvents.filter(e => e.status === 'draft').slice(0, 2);
+  const upcomingEvents = allEvents.filter((e: any) => e.status === 'published');
+  const attendedEvents = (allEvents as any[]).filter(e => e.status === 'draft').slice(0, 2);
 
   return (
     <RoleGuard allowedRoles={['participant']}>
