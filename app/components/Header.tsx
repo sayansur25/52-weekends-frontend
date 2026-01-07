@@ -8,6 +8,7 @@ export default function Header() {
   const [userName, setUserName] = useState('');
   const [userRole, setUserRole] = useState('');
   const [mounted, setMounted] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -123,8 +124,68 @@ export default function Header() {
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="lg:hidden text-3xl hover:opacity-80 transition">☰</button>
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="lg:hidden text-3xl hover:opacity-80 transition">☰</button>
       </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="lg:hidden px-4 pb-4">
+          <ul className="flex flex-col space-y-2 text-sm font-medium">
+            <li>
+              <Link href="/events" onClick={() => setIsMenuOpen(false)} className="block px-4 py-2 rounded-lg hover:bg-white/10 transition duration-200">
+                Retreats
+              </Link>
+            </li>
+            <li>
+            <Link href="/gallery" onClick={() => setIsMenuOpen(false)} className="block px-4 py-2 rounded-lg hover:bg-white/10 transition duration-200">
+                Gallery
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="block px-4 py-2 rounded-lg hover:bg-white/10 transition duration-200">
+                Contact
+              </Link>
+            </li>
+          </ul>
+
+          {/* Action Buttons - Mobile */}
+          <div className="mt-4 pt-4 border-t border-white/10 flex flex-col gap-3 items-start">
+            {isLoggedIn ? (
+              <>
+                <Link href={getDashboardLink()} onClick={() => setIsMenuOpen(false)} className="w-full">
+                  <button className="w-full text-left px-5 py-2 rounded-lg text-sm font-bold border-2 border-white text-white hover:bg-white/10 transition duration-200">
+                    Dashboard
+                  </button>
+                </Link>
+                <button
+                  onClick={() => { handleLogout(); setIsMenuOpen(false); }}
+                  className="w-full text-left px-5 py-2 rounded-lg text-sm font-bold border-2 border-white text-white hover:bg-white/10 transition duration-200"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link href="/auth/login" onClick={() => setIsMenuOpen(false)} className="w-full">
+                  <button className="w-full text-left px-5 py-2 rounded-lg text-sm font-bold border-2 border-white text-white hover:bg-white/10 transition duration-200">
+                    Login
+                  </button>
+                </Link>
+                <Link href="/auth/register" onClick={() => setIsMenuOpen(false)} className="w-full">
+                  <button className="w-full text-left px-5 py-2 rounded-lg text-sm font-bold border-2 border-white text-white hover:bg-white/10 transition duration-200">
+                    Sign up
+                  </button>
+                </Link>
+                <Link href="/request-proposal" onClick={() => setIsMenuOpen(false)} className="w-full">
+                  <button className="w-full text-left px-6 py-2 rounded-lg text-sm font-bold text-black hover:shadow-lg transition duration-200" style={{ background: '#D5AD36' }}>
+                    Request Proposal
+                  </button>
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
